@@ -51,7 +51,7 @@ function App() {
           style={{ transition: 'transform 0.2s ease' }}
           onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
           onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
+        > 
           download  
           <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -90,19 +90,10 @@ function App() {
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            Open app
+            Continue to Chat
           </button>
 
-          {/* زر Continue to WhatsApp Web - هوفر بسيط فقط */}
-          <button
-            onClick={handleWhatsAppWeb}
-            className="bg-white text-gray-700 rounded-full font-bold text-3xl mb-8 flex items-center justify-center shadow-2xl cursor-pointer"
-            style={{ width: '250px', height: '10px', padding: '20px 20px', fontSize: '14px', fontWeight: '700', transition: 'transform 0.2s ease' }}
-            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Continue to WhatsApp Web
-          </button>
+         
 
           {/* نص Don't have the app? مع الأيقونة والخط تحت - تم تعديله ليشبه الصورة */}
           <div className="flex items-center gap-2 text-gray-600 text-2xl">
