@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import './App.css';
+// ======== بداية الكود الجديد — مبني حسب الصورة بالضبط ========
+import { useState, useEffect } from 'react';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const phoneNumber = '96541114604';
 
-  // ده هو الزر الرئيسي اللي في الصورة، بيفتح الواتساب مباشرة
+  // ده هو الزر الرئيسي اللي في الصورة، بيفتح الواتساب مباشرة — **ما هيتم تعديله**
   const handleOpenApp = () => {
     const userAgent = navigator.userAgent.toLowerCase();
     const isWhatsAppBrowser = userAgent.includes('whatsapp');
@@ -17,100 +17,93 @@ function App() {
     }
   };
 
-  // ده زر WhatsApp Web
-  const handleWhatsAppWeb = () => {
-    window.open(`https://web.whatsapp.com/send?phone=${phoneNumber}`, '_blank');
-  };
-
-  // ده زر التحميل
-  const handleDownload = () => {
-    window.open('https://www.whatsapp.com/download', '_blank');
-  };
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* الهيدر - نفس الصورة */}
-      <header className="flex items-center justify-between px-10 py-3 border-b border-gray-200">
-        <div>
-          <img src="/whats.png" alt="WhatsApp" className="w-30 h-30" />
-        </div>
+    <div className="min-h-screen bg-white font-sans" style={{ paddingBottom: '80px' }}>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm">
-          <a href="#" className="text-gray-700 hover:text-gray-900">Features</a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">Privacy</a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">Help Center</a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">Blog</a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">For Business</a>
-          <a href="#" className="text-gray-700 hover:text-gray-900">Apps</a>
-        </nav>
-
-        {/* زر Download في الهيدر - هوفر بسيط فقط */}
-        <button
-          onClick={handleDownload}
-          className="bg-[#25D366] text-white px-8 py-3 rounded-full font-medium text-base flex items-center gap-2 cursor-pointer"
-          style={{ transition: 'transform 0.2s ease' }}
-          onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-          onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        > 
-          download  
-          <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </button>
+      {/* ======== الهيدر الصغير في الأعلى — لوجو Basel Academy فقط ======== */}
+      <header className="flex justify-center py-3">
+        <img src="/logoss.png" alt="Basel Academy" style={{ width: '64px', height: '64px' }} />
       </header>
 
-      {/* المحتوى الرئيسي - يطابق الصورة تمامًا */}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-70px)] px-6 py-20">
-        <div className="max-w-md w-full flex flex-col items-center text-center">
-          {/* شعار Basel Academy - مع CSS كلاس للتحكم الكامل */}
-          <div className="mb-12">
-            <img
-              src="/logoss.png"
-              alt="Basel Academy"
-              className="logo-basel mx-auto"
-              // للتحكم في الحجم، غير الكلاس:
-              // logo-basel-small (80x80px)
-              // logo-basel-medium (100x100px) 
-              // logo-basel-large (150x150px)
-              // أو استخدم الاستايل المباشر أدناه
-              // style={{ width: '100px', height: '100px' }}
-            />
-          </div>
+      {/* ======== الصورة الكبيرة مع شعار باسل ======== */}
+      <div className="w-full bg-gray-50 flex flex-col items-center justify-center" style={{ padding: '20px 0' }}>
+        <img src="/photo.png" alt="باسل" style={{ width: '300px', height: '300px', objectFit: 'contain', marginBottom: '10px' }} />
+      </div>
 
-          {/* اسم المؤسسة */}
-          <h1 className="text-xs font-normal text-gray-600 mb-12">
-            Basel Academy
-          </h1>
+      {/* ======== الزر الأخضر في المنتصف — ما هيتم تعديله أبدًا ======== */}
+      <div className="flex justify-center" style={{ margin: '20px 0' }}>
+        <button
+          onClick={handleOpenApp}
+          className="bg-[#25D366] text-white rounded-full font-bold flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#20BA5A]"
+          style={{ width: '280px', height: '50px', fontSize: '15px', fontWeight: '600' }}
+        >
+تواصل معنا         </button>
+      </div>
 
-          {/* زر Open app - هوفر بسيط فقط */}
-          <button
-            onClick={handleOpenApp}
-            className="bg-[#25D366] text-gray-700 rounded-full font-bold text-3xl mb-4 flex items-center justify-center shadow-2xl cursor-pointer"
-            style={{ width: '250px', height: '10px', padding: '20px 20px', fontSize: '14px', fontWeight: '700', transition: 'transform 0.2s ease' }}
-            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            Continue to Chat
-          </button>
+      {/* ======== عنوان "من برامجنا" ======== */}
+      <div className="flex justify-end" style={{ padding: '0 24px', marginBottom: '15px' }}>
+        <h2 className="text-gray-800" style={{ fontSize: '20px', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>من برامجنا</h2>
+      </div>
 
-         
+      {/* ======== أربعة كروت للبرامج — بس على الموبايل هيظهر اتنين بس ======== */}
+      <div className="flex gap-3 justify-between overflow-x-auto" style={{ padding: '0 20px', marginBottom: '20px', maxWidth: '100%' }}>
 
-          {/* نص Don't have the app? مع الأيقونة والخط تحت - تم تعديله ليشبه الصورة */}
-          <div className="flex items-center gap-2 text-gray-600 text-2xl">
-            <img src="/under.png" alt="WhatsApp" className="w-6 h-6" />
-            <span>Don't have the app?</span>
-            <a
-              onClick={handleDownload}
-              className="text-green-600 underline hover:text-green-800 font-bold cursor-pointer"
-              style={{ textDecorationThickness: '3px', textUnderlineOffset: '3px' }}
-            >
-              Download it now
-            </a>
-          </div>
+        {/* كارت 1: صحبة صالحة */}
+        <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0" style={{ width: '45%', minWidth: '150px' }}>
+          <img src="/p1.png" alt="لعب وتنافس" style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+          <p className="text-gray-800 text-center" style={{ fontSize: '12px', fontWeight: '500', padding: '8px 4px' }}>صحبة صالحة </p>
         </div>
-      </main>
+
+        {/* كارت 2: حلقات قرآن */}
+        <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0" style={{ width: '45%', minWidth: '150px' }}>
+          <img src="/p2.png" alt="أجواء صيفية" style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+          <p className="text-gray-800 text-center" style={{ fontSize: '12px', fontWeight: '500', padding: '8px 4px' }}>حلقات قرآن</p>
+        </div>
+
+        {/* كارت 3: أجواء صيفية */}
+        <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0" style={{ width: '45%', minWidth: '150px' }}>
+          <img src="/p3.png" alt="حلقات قرآن" style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+          <p className="text-gray-800 text-center" style={{ fontSize: '12px', fontWeight: '500', padding: '8px 4px' }}>آجواء صيفية</p>
+        </div>
+
+        {/* كارت 4: لعب وتنافس */}
+        <div className="bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0" style={{ width: '45%', minWidth: '150px' }}>
+          <img src="/p4.png" alt="صحية صالحة" style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+          <p className="text-gray-800 text-center" style={{ fontSize: '12px', fontWeight: '500', padding: '8px 4px' }}>لعب و تنافس</p>
+        </div>
+
+      </div>
+
+      {/* ======== الزر الأزرق "سجل مشتركين" ======== */}
+      <div className="flex justify-center" style={{ marginBottom: '30px' }}>
+        <button
+          onClick={() => window.open(`https://wa.me/${phoneNumber}?text=أريد التسجيل في البرامج`, '_blank')}
+          className="bg-[#3b82f6] text-white rounded-full font-bold flex items-center justify-center shadow-lg cursor-pointer hover:bg-[#2563eb]"
+          style={{ width: '320px', height: '54px', fontSize: '16px', fontWeight: '600' }}
+        >
+          سجل مشتركين
+        </button>
+      </div>
+
+      {/* ======== شريط التصفح في الأسفل — الزرارين بيفتحوا واتساب ======== */}
+      <div className="bg-white border-t border-gray-200 flex justify-around" style={{ position: 'fixed', bottom: '0', left: '0', right: '0', padding: '12px 0', zIndex: '9999' }}>
+        <div className="flex flex-col items-center cursor-pointer" onClick={handleOpenApp}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ width: '24px', height: '24px' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14a4 4 0 014-4h4M8 14a4 4 0 014-4H8m0 8v6m0 0l-2-2m2 2l2-2" />
+          </svg>
+          <span className="text-gray-600" style={{ fontSize: '11px', marginTop: '4px' }}>الإعدادات</span>
+        </div>
+        <div className="flex flex-col items-center cursor-pointer" onClick={handleOpenApp}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ width: '24px', height: '24px' }}>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 001 1h3m-6 0a1 1 0 001-1v-4a1 1 0 00-1-1h-2a1 1 0 00-1 1v4a1 1 0 001 1h2z" />
+          </svg>
+          <span className="text-blue-800" style={{ fontSize: '11px', marginTop: '4px' }}>الرئيسية</span>
+        </div>
+      </div>
+
     </div>
   );
 }
-
 export default App;
+// ======== نهاية الكود ========
